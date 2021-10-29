@@ -1,0 +1,86 @@
+--[[
+	
+    Written by Federal#9999
+	No obfuscation needed
+	
+]]
+local authui = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+local _1 = Instance.new("ImageLabel")
+local _1_2 = Instance.new("ImageLabel")
+local t = Instance.new("TextBox")
+local TextButton = Instance.new("TextButton")
+
+authui.Name = "authui"
+authui.Parent = game:GetService("CoreGui")
+authui.ResetOnSpawn = false
+authui.Enabled = true
+
+ImageLabel.Parent = authui
+ImageLabel.BackgroundColor3 = Color3.fromRGB(48, 16, 16)
+ImageLabel.BackgroundTransparency = 1
+ImageLabel.Position = UDim2.new(0.5, -380, 0.5, -200)
+ImageLabel.Size = UDim2.new(0, 764, 0, 409)
+ImageLabel.Image = "rbxassetid://7860206966"
+ImageLabel.ScaleType = Enum.ScaleType.Fit
+
+_1.Name = "1"
+_1.Parent = ImageLabel
+_1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_1.BackgroundTransparency = 1.000
+_1.Position = UDim2.new(0.24281323, 0, 0.437276304, 0)
+_1.Size = UDim2.new(0, 397, 0, 141)
+_1.Image = "rbxassetid://3570695787"
+_1.ImageTransparency = 0.940
+_1.ScaleType = Enum.ScaleType.Slice
+_1.SliceCenter = Rect.new(100, 100, 100, 100)
+_1.SliceScale = 0.120
+
+_1_2.Name = "1"
+_1_2.Parent = ImageLabel
+_1_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+_1_2.BackgroundTransparency = 1.000
+_1_2.Position = UDim2.new(0.257211179, 0, 0.491066039, 0)
+_1_2.Size = UDim2.new(0, 375, 0, 51)
+_1_2.Image = "rbxassetid://3570695787"
+_1_2.ImageTransparency = 0.940
+_1_2.ScaleType = Enum.ScaleType.Slice
+_1_2.SliceCenter = Rect.new(100, 100, 100, 100)
+_1_2.SliceScale = 0.120
+
+t.Name = "t"
+t.Parent = ImageLabel
+t.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+t.BackgroundTransparency = 1.000
+t.Position = UDim2.new(0.286649227, 0, 0.508557439, 0)
+t.Size = UDim2.new(0, 329, 0, 35)
+t.Font = Enum.Font.SourceSansBold
+t.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+t.Text = "FEDERALDADDY"
+t.TextColor3 = Color3.fromRGB(208, 208, 208)
+t.TextSize = 31.000
+
+TextButton.Parent = ImageLabel
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BackgroundTransparency = 0.800
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.388241678, 0, 0.65483892, 0)
+TextButton.Size = UDim2.new(0, 173, 0, 39)
+TextButton.Font = Enum.Font.ArialBold
+TextButton.Text = "SUBMIT"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 23.000
+
+TextButton.MouseButton1Click:Connect(
+	function()
+		local a = {Method = "GET", Url = "http://51.89.166.88/wl3/redeem.php?code=" .. t.Text}
+
+		local r = (syn and syn.request(a) or http and http.request(a)).Body
+
+		if r ~= "USER_AUTHENTICATED" then
+			game:GetService("Players").LocalPlayer:Kick(r)
+		else
+			authui:Destroy()
+		end
+	end
+)
